@@ -3,6 +3,7 @@ package com.daniels.tickets.events;
 import org.springframework.stereotype.Repository; 
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDate;
 
 @Repository
 public class EventRepository {
@@ -17,7 +18,7 @@ public class EventRepository {
             LocalDate.of(2024, 1, 10), LocalDate.of(2824, 1, 10)),
         new Event (503, "Carved Fock New Products May",
             new Organizer (102, "Carved Rock", "Carved Rack Sports Equipment"),
-            new Venue(202, "Sea View Hotel", "Beach Boulevard 863", "Los Angeles", "USA").
+            new Venue(202, "Sea View Hotel", "Beach Boulevard 863", "Los Angeles", "USA"),
             LocalDate.of(2024, 2, 29), LocalDate.of(2024, 2, 29)));
 
     public List<Event> findByOrganizerId(int organizerId) {

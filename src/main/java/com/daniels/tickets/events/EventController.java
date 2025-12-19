@@ -2,6 +2,13 @@ package com.daniels.tickets.events;
 
 import java.util.List;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import java.util.NoSuchElementException;
+import org.springframework.web.ErrorResponse;
+import org.springframework.http.HttpStatus;
 
 @RestController
 public class EventController {
@@ -21,7 +28,7 @@ public class EventController {
     }
     @GetMapping(path = "/events")
     public List<Event> getEventsByOrganizers(@RequestParam("organizerId") int organizerId){
-        return EventRepository.findByOrganizerId(int organizerId);
+        return eventRepository.findByOrganizerId(organizerId);
     }    
     @GetMapping(path = "/events/{id}")
     public Event getEventById(@PathVariable("id") int eventId){

@@ -2,6 +2,16 @@ package com.daniels.tickets.registration;
 
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+import java.util.NoSuchElementException;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @RestController
 @RequestMapping(path = "/registrations")
@@ -19,7 +29,7 @@ public class RegistrationController{
     @GetMapping(path = "/{ticketCode}")
     public Registration get(@PathVariable("ticketCode") String ticketCode) {
         return registrationRepository. findByTicketCode(ticketCode)
-                .orElseThrow(() -> new NoSuchElementException( "Registration with ticket code " + ticketCode + " not found"))
+                .orElseThrow(() -> new NoSuchElementException( "Registration with ticket code " + ticketCode + " not found"));
     }
     @PutMapping
     public Registration update(@RequestBody Registration registration) {
@@ -27,6 +37,6 @@ public class RegistrationController{
     }
     @DeleteMapping(path = "/{ticketCode}")
     public void delete(@PathVariable("ticketCode") String ticketCode) {
-        registrationRepository.deleteDyTicketCode(ticketCode);
+        registrationRepository.deleteByTicketCode(ticketCode);
     }
 }
