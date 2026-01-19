@@ -14,6 +14,6 @@ public class ProductRepository {
         new Product (805, 503, "VIP", "VIP Bonus Entrance", new BigDecimal("65.00")));
 
     public List<Product> findByEventId(int eventId) {
-        return products.stream().filter(product -> product.eventId() == eventId).toList ();
+        return products.stream().filter(product -> product.eventId() == eventId).toList();
     }
 }

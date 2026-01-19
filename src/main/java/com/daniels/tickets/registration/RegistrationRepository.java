@@ -22,15 +22,19 @@ public class RegistrationRepository {
     public Optional<Registration> findByTicketCode(String ticketCode) {
         return Optional.ofNullable(registrationsByTicketCode.get(ticketCode));
     }
-    public Registration update(Registration registration) {
-        String ticketCode = registration.ticketCode();
-        var opt = findByTicketCode(ticketCode);
-        if(opt.isPresent()){
-            var existing = opt.get();
-            return existing;
-        }
-        return null;
+    public Optional<Registration> update(Registration registration) {
+    String ticketCode = registration.ticketCode();
+
+    // Check if registration exists
+    if (registrationsByTicketCode.containsKey(ticketCode)) {
+        // Replace old registration with new one
+        registrationsByTicketCode.put(ticketCode, registration);
+        return Optional.of(registration);
     }
+
+    // Not found
+    return Optional.empty();
+}
     public Optional<Registration> deleteByTicketCode(String ticketCode) {
         return Optional.ofNullable(registrationsByTicketCode.remove(ticketCode));
     }

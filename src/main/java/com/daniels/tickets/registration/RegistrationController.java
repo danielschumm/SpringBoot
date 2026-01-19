@@ -19,7 +19,7 @@ public class RegistrationController{
 
     private final RegistrationRepository registrationRepository;
 
-    public RegistrationController (RegistrationRepository registrationRepository){
+    public RegistrationController(RegistrationRepository registrationRepository){
         this.registrationRepository = registrationRepository;
     }
     @PostMapping
@@ -31,10 +31,19 @@ public class RegistrationController{
         return registrationRepository. findByTicketCode(ticketCode)
                 .orElseThrow(() -> new NoSuchElementException( "Registration with ticket code " + ticketCode + " not found"));
     }
-    @PutMapping
-    public Registration update(@RequestBody Registration registration) {
-        return registrationRepository.update(registration);
-    }
+    @PutMapping(path = "/{ticketCode}")
+    public Registration update(@PathVariable String ticketCode, @RequestBody @Valid Registration registration) {
+            registration = new Registration(
+                registration.id(),
+                registration.productId(),
+                ticketCode,
+                registration.attendeeName()
+            );
+
+        return registrationRepository.update(registration)
+            .orElseThrow(() -> new NoSuchElementException(
+                    "Registration with ticket code " + ticketCode + " not found"));
+}
     @DeleteMapping(path = "/{ticketCode}")
     public void delete(@PathVariable("ticketCode") String ticketCode) {
         registrationRepository.deleteByTicketCode(ticketCode);
