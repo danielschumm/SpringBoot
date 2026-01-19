@@ -31,7 +31,7 @@ public class RegistrationController{
         return registrationRepository. findByTicketCode(ticketCode)
                 .orElseThrow(() -> new NoSuchElementException( "Registration with ticket code " + ticketCode + " not found"));
     }
-    @PutMapping(path = "/{ticketCode}")
+    @PutMapping
     public Registration update(@PathVariable String ticketCode, @RequestBody @Valid Registration registration) {
             registration = new Registration(
                 registration.id(),
@@ -40,9 +40,7 @@ public class RegistrationController{
                 registration.attendeeName()
             );
 
-        return registrationRepository.update(registration)
-            .orElseThrow(() -> new NoSuchElementException(
-                    "Registration with ticket code " + ticketCode + " not found"));
+        return registrationRepository.update(registration);
 }
     @DeleteMapping(path = "/{ticketCode}")
     public void delete(@PathVariable("ticketCode") String ticketCode) {

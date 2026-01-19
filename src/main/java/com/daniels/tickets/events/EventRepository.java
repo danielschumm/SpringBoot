@@ -25,6 +25,6 @@ public class EventRepository {
         return events.stream().filter(event -> event.organizer().id() == organizerId).toList();
     }
     public Optional<Event> findById(int id) {
-        return events.stream ().filter(event -> event.id() == id).findAny();
+        return events.stream().filter(event -> event.id() == id).findAny();
     }
 }
