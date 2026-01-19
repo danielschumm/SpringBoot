@@ -6,6 +6,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.UUID;
+import java.util.NoSuchElementException;
+import jakarta.validation.Valid;
 
 @Repository
 public class RegistrationRepository {
@@ -24,12 +26,12 @@ public class RegistrationRepository {
     }
     public Registration update(Registration registration) {
         String ticketCode = registration.ticketCode();
-        var opt = findByTicketCode(ticketCode);
+        var existing = findByTicketCode(ticketCode);
 
             var saved = new Registration(existing.id(), existing.productId(), existing.ticketCode(), registration.attendeeName());
             registrationsByTicketCode.put(ticketCode, saved);
             return saved;
-        } else {
+        }else{
             throw new NoSuchElementException("Registration with ticket code " + ticketCode + " not found");
         }
     public void deleteByTicketCode(String ticketCode) {
