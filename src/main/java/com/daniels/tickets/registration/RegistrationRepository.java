@@ -26,10 +26,15 @@ public class RegistrationRepository {
     public Registration update(Registration registration) {
         String ticketCode = registration.ticketCode();
         var opt = findByTicketCode(ticketCode);
-        if(opt.isPresent()){
-            var existing = opt.get();
-            return existing;
+
+            var saved = new Registration(existing.id(), existing.productId(), existing.ticketCode(), registration.attendeeName());
+            registrationsByTicketCode.put(ticketCode, saved);
+            return saved;
+        } else {
+            throw new NoSuchElementException("Registration with ticket code " + ticketCode + " not found");
         }
-        return null;
+    public void deleteByTicketCode(String ticketCode) {
+        registrationsByTicketCode.remove(ticketCode);
     }
 }
+
