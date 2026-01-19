@@ -12,7 +12,7 @@ public class VenueRepository {
         new Venue(202, "Sea View Hotel", "Beach Boulevard 863", "LA", "USA")
     );
     
-    public List<Venue> findById(int id){
+    public Optional<Venue> findById(int id){
         return venues.stream().filter(venue -> venue.id() == id).findAny();
     }
     

@@ -1,7 +1,6 @@
 package com.daniels.tickets.registration;
 
 import org.springframework.stereotype.Repository;
-import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.Map;
@@ -16,7 +15,7 @@ public class RegistrationRepository {
     public Registration create(Registration registration) {
         int id = ID_GENERATOR.incrementAndGet();
         String ticketCode = UUID.randomUUID().toString();
-        var saved = new Registration(id, registration.productid(), ticketCode, registration.attendeeName ());
+        var saved = new Registration(id, registration.productId(), ticketCode, registration.attendeeName ());
         registrationsByTicketCode.put(ticketCode, saved);
         return saved;
     }
@@ -36,5 +35,9 @@ public class RegistrationRepository {
     public void deleteByTicketCode(String ticketCode) {
         registrationsByTicketCode.remove(ticketCode);
     }
+    public Optional<Registration> deleteByTicketCode(String ticketCode) {
+        return Optional.ofNullable(registrationsByTicketCode.remove(ticketCode));
+    }
+    
 }
 
