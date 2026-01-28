@@ -4,7 +4,18 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 import java.time.LocalDate;
+import org.springframework.data.jpa.repository.JpaRepository;
 
+@Repository
+public interface EventRepository extends JpaRepository<Event,Integer> {
+
+    List<Event> findByOrganizerId(int organizerId);
+    
+}
+
+
+
+/*
 @Repository
 public class EventRepository {
     private final List<Event> events = List.of(
@@ -27,4 +38,4 @@ public class EventRepository {
     public Optional<Event> findById(int id) {
         return events.stream().filter(event -> event.id() == id).findAny();
     }
-}
+}*/

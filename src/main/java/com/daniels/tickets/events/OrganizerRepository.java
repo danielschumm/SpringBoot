@@ -1,17 +1,14 @@
 package com.daniels.tickets.events;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class OrganizerRepository {
-    private final List<Organizer> organizers = List.of(
-        new Organizer(101, "Globomantics", "Globomantics Technology Corporation"),
-        new Organizer(102, "Carved Rock", "Carved Rocl Sports Equipment")
-    );
+public interface OrganizerRepository extends JpaRepository<Organizer,Integer> {
 
-    public List<Organizer> findAll(){
-        return organizers;
-    }
+    
 }
+
+

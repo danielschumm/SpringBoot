@@ -3,7 +3,15 @@ package com.daniels.tickets.events;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
 
+@Repository
+public interface VenueRepository extends JpaRepository<Venue,Integer> {
+
+    
+}
+
+/*
 @Repository
 public class VenueRepository {
 
@@ -16,4 +24,4 @@ public class VenueRepository {
         return venues.stream().filter(venue -> venue.id() == id).findAny();
     }
     
-}
+}*/

@@ -4,6 +4,8 @@ package com.daniels.tickets.registration;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.util.NoSuchElementException;
+import java.util.UUID;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,24 +26,22 @@ public class RegistrationController{
     }
     @PostMapping
     public Registration create(@RequestBody @Valid Registration registration) {
-        return registrationRepository.create(registration);
+        String ticketCode = UUID.randomUUID().toString();
+        return registrationRepository.save(new Registration(null, registration.productId(), ticketCode, registration.attendeeName()
+        ));
     }
     @GetMapping(path = "/{ticketCode}")
     public Registration get(@PathVariable("ticketCode") String ticketCode) {
-        return registrationRepository. findByTicketCode(ticketCode)
+        return registrationRepository.findByTicketCode(ticketCode)
                 .orElseThrow(() -> new NoSuchElementException( "Registration with ticket code " + ticketCode + " not found"));
     }
     @PutMapping
-    public Registration update(@PathVariable String ticketCode, @RequestBody @Valid Registration registration) {
-            registration = new Registration(
-                registration.id(),
-                registration.productId(),
-                ticketCode,
-                registration.attendeeName()
-            );
-
-        return registrationRepository.update(registration);
-}
+    public Registration update(@RequestBody @Valid Registration registration){
+        String ticketCode = registration.ticketCode();
+        var existing = registrationRepository.findByTicketCode(ticketCode)
+        .orElseThrow(() -> new NoSuchElementException( "Registration with ticket code " + ticketCode + " not found"));
+        return registrationRepository.save(new Registration(existing.id(), existing.productId(), ticketCode, registration.attendeeName()));
+    }
     @DeleteMapping(path = "/{ticketCode}")
     public void delete(@PathVariable("ticketCode") String ticketCode) {
         registrationRepository.deleteByTicketCode(ticketCode);

@@ -3,7 +3,18 @@ package com.daniels.tickets.events;
 import org.springframework.stereotype.Repository; 
 import java.util.List;
 import java.math.BigDecimal;
+import org.springframework.data.jpa.repository.JpaRepository;
 
+@Repository
+public interface ProductRepository extends JpaRepository<Product,Integer> {
+
+        List<Event> findByEventId(int eventId);
+
+}
+
+
+
+/*
 @Repository
 public class ProductRepository {
     private final List<Product> products = List.of(
@@ -16,4 +27,4 @@ public class ProductRepository {
     public List<Product> findByEventId(int eventId) {
         return products.stream().filter(product -> product.eventId() == eventId).toList();
     }
-}
+}*/
