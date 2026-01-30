@@ -2,9 +2,9 @@ server:
   port: 8081
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/pluralsight
-    username: pluralsight
-    password: pluralsight
+    url: jdbc:postgresql://localhost:5432/daniels
+    username: daniels
+    password: daniels
   jpa:
     hibernate:
       ddl-auto: none
