@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Integer> {
 
-        List<Event> findByEventId(int eventId);
+        List<Product> findByEventId(int eventId);
 
 }
 
