@@ -7,6 +7,14 @@ INSERT INTO venues (id, name, street, city, country) VALUES (202, 'Sea View Hote
 INSERT INTO events (id, name, organizer_id, venue_id, start_date, end_date) VALUES (501, 'Globomantics Tech Conference', 101, 201, '2023-10-02', '2023-10-04');
 INSERT INTO events (id, name, organizer_id, venue_id, start_date, end_date) VALUES (502, 'Globomantics Developer Day', 101, 201, '2024-01-10', '2024-01-10');
 INSERT INTO events (id, name, organizer_id, venue_id, start_date, end_date) VALUES (503, 'Carved Rock New Products Day', 102, 202, '2024-02-29', '2024-02-29');
+INSERT INTO events (id, name, organizer_id, venue_id, start_date, end_date) VALUES (504, 'Globomantics AI Summit', 101, 201, '2024-05-15', '2024-05-17');
+INSERT INTO events (id, name, organizer_id, venue_id, start_date, end_date) VALUES (505, 'Carved Rock Outdoor Expo', 102, 202, '2024-06-20', '2024-06-22');    
+INSERT INTO events (id, name, organizer_id, venue_id, start_date, end_date) VALUES (506, 'Globomantics Product Launch', 101, 201, '2024-07-10', '2024-07-12');
+INSERT INTO events (id, name, organizer_id, venue_id, start_date, end_date) VALUES (507, 'Carved Rock Fitness Seminar', 102, 202, '2024-08-15', '2024-08-15');
+INSERT INTO events (id, name, organizer_id, venue_id, start_date, end_date) VALUES (508, 'Globomantics Sales Conference', 101, 201, '2024-09-20', '2024-09-22');
+INSERT INTO events (id, name, organizer_id, venue_id, start_date, end_date) VALUES (509, 'Carved Rock Camping Trip', 102, 202, '2024-10-05', '2024-10-07');
+INSERT INTO events (id, name, organizer_id, venue_id, start_date, end_date) VALUES (510, 'Globomantics Training Workshop', 101, 201, '2024-11-15', '2024-11-15');
+
 
 INSERT INTO products (id, event_id, name, description, price) VALUES (801, 501, 'Standard', 'Standard Conference Ticket', 499.00);
 INSERT INTO products (id, event_id, name, description, price) VALUES (802, 501, 'Premium', 'Premium Conference Ticket', 649.00);
