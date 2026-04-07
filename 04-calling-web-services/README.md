@@ -1,10 +1,6 @@
-# Spring Boot 3 Fundamentals
+# Spring Boot 3 Fundamentals - Daniel S.
 
 ## Calling REST Web Services
-
-In this module, you've learned how to call REST web services with Spring with WebClient and with an HTTP interface client.
-
-The project is now a multi-module Maven project, with separate modules for the events service and the registration service.
 
 Steps:
 
