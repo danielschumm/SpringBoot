@@ -1,7 +1,5 @@
 # Spring Boot 3 Fundamentals
 
-These examples and exercises are part of the course "Spring Boot 3 Fundamentals" by Jesper de Jong at [Pluralsight](https://www.pluralsight.com/).
-
 ## Calling REST Web Services
 
 In this module, you've learned how to call REST web services with Spring with WebClient and with an HTTP interface client.
