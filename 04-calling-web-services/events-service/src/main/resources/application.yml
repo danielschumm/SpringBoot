@@ -16,3 +16,5 @@ spring:
   sql:
     init:
       mode: never
+JWT:
+  secretkey: "your-very-long-secret-key-that-should-be-kept-safe-and-not-shared"
