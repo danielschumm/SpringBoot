@@ -13,13 +13,21 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails admin = User.builder()
-            .username("admin")
-            .password(passwordEncoder().encode("password"))
-            .roles("ADMIN")
-            .build();
 
-        return new InMemoryUserDetailsManager(admin);
+        //fake users for demonstration purposes
+        UserDetails admin = User.builder()
+                .username("admin")
+                .password(passwordEncoder().encode("password"))
+                .roles("ADMIN")
+                .build();
+
+        UserDetails user = User.builder()
+                .username("user")
+                .password(passwordEncoder().encode("1234"))
+                .roles("USER")
+                .build();
+                
+        return new InMemoryUserDetailsManager(admin, user);
     }
 
     @Bean

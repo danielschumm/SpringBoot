@@ -1,8 +1,6 @@
 package com.pluralsight.springboot.auth;
 
-import org.springframework.security.access.method.P;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
