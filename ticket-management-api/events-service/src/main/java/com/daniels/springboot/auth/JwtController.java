@@ -1,5 +1,6 @@
 package com.daniels.springboot.auth;
 
+import org.springframework.security.access.method.P;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @RestController
 @RequestMapping("/auth")
@@ -35,5 +38,16 @@ public class JwtController {
 
         //Generate JWT token
         return jwtService.generateToken(userDetails.getUsername());
+    }
+    @PostMapping("/register")
+    public String register(@RequestBody AuthRequest authRequest) {
+
+        System.out.println("Register attempt for user: " + authRequest.getUsername());
+        User newUser = new User();
+        newUser.setUsername(authRequest.getUsername());
+        newUser.setPassword(authRequest.getPassword());
+        newUser.setRole("USER");
+        EventUserDetailsService.register(newUser);
+        return "User registered successfully";
     }
 }

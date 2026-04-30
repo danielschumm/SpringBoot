@@ -9,6 +9,13 @@ CREATE TABLE public.events (
 
 ALTER TABLE public.events OWNER TO daniels;
 
+CREATE TABLE public.users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(20) NOT NULL
+);
+
 CREATE SEQUENCE public.events_id_seq
     AS integer
     START WITH 1

@@ -1,34 +1,31 @@
 package com.daniels.springboot.auth;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import java.util.List;
+
 import java.util.Collection;
 public class EventUserDetails implements UserDetails {
 
-    private final String username;
-    private final String password;
-    private final Collection<? extends GrantedAuthority> authorities;
+    private final User user;
 
-    public EventUserDetails(String username,
-                            String password,
-                            Collection<? extends GrantedAuthority> authorities) {
-        this.username = username;
-        this.password = password;
-        this.authorities = authorities;
+    public EventUserDetails(User user) {
+        this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return List.of(new SimpleGrantedAuthority(user.getRole()));
     }
 
     @Override
     public String getPassword() {
-        return password;
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return username;
+        return user.getUsername();
     }
 
     @Override

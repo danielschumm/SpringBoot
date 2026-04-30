@@ -2,7 +2,7 @@ server:
   port: 8081
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/daniels
+    url: jdbc:postgresql://localhost:5432/myapp
     username: daniels
     password: daniels
   jpa:
@@ -15,6 +15,6 @@ spring:
     show-sql: true
   sql:
     init:
-      mode: never
+      mode: always
 JWT:
   secretkey: "your-very-long-secret-key-that-should-be-kept-safe-and-not-shared"

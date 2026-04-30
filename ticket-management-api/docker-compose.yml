@@ -6,6 +6,7 @@ services:
   postgres:
     image: postgres
     environment:
+      POSTGRES_DB: myapp
       POSTGRES_USER: daniels
       POSTGRES_PASSWORD: daniels
     ports:
