@@ -1,0 +1,39 @@
+package com.daniels.springboot.auth;
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+
+@RestController
+@RequestMapping("/auth")
+public class JwtController {
+        private final JwtService jwtService;
+        private final EventUserDetailsService EventUserDetailsService;
+        private final AuthenticationManager authenticationManager;
+
+    public JwtController(JwtService jwtService, EventUserDetailsService userDetailsService,
+            AuthenticationManager authenticationManager) {
+        this.jwtService = jwtService;
+        this.EventUserDetailsService = userDetailsService;
+        this.authenticationManager = authenticationManager;
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestBody AuthRequest authRequest) {
+
+        System.out.println("Login attempt for user: " + authRequest.getUsername());
+        //Authenticate the user
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+
+        //Load user details (db lookup or in-memory)      
+        UserDetails userDetails = EventUserDetailsService.loadUserByUsername(authRequest.getUsername());
+
+        //Generate JWT token
+        return jwtService.generateToken(userDetails.getUsername());
+    }
+}
