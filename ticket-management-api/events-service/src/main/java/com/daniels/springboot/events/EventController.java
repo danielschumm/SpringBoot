@@ -20,15 +20,18 @@ public class EventController {
     private final EventRepository eventRepository;
     private final ProductRepository productRepository;
     private final EncodingService service;
+    private final EventService eventService;
 
     public EventController(OrganizerRepository organizerRepository,
             EventRepository eventRepository,
             ProductRepository productRepository,
-            EncodingService service) {
+            EncodingService service,
+            EventService eventService) {
         this.organizerRepository = organizerRepository;
         this.eventRepository = eventRepository;
         this.productRepository = productRepository;
         this.service = service;
+        this.eventService = eventService;
     }
 
     @GetMapping(path = "/organizers")
@@ -97,8 +100,7 @@ public class EventController {
 
     @GetMapping(path = "/events/{id}")
     public Event getEventById(@PathVariable("id") int eventId) {
-        return eventRepository.findById(eventId)
-                .orElseThrow(() -> new NoSuchElementException("Event with id " + eventId + " not found"));
+        return eventService.getEventById(eventId);
     }
 
     @GetMapping(path = "/products")

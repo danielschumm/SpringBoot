@@ -11,3 +11,4 @@ public interface EventsClient {
     @GetExchange("/events/{id}")
     Event getEventById(@PathVariable("id") int eventId);
 }
+    
