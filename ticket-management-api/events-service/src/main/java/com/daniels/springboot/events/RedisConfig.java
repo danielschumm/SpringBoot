@@ -1,4 +1,4 @@
-package com.daniels.springboot.events;
+/*package com.daniels.springboot.events;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
@@ -39,4 +39,4 @@ public class RedisConfig {
                 .cacheDefaults(config)
                 .build();
     }
-}
+}*/
