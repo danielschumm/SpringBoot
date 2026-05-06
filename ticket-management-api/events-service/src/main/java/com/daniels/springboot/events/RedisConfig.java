@@ -1,4 +1,4 @@
-/*package com.daniels.springboot.events;
+package com.daniels.springboot.events;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
@@ -30,7 +30,7 @@ public class RedisConfig {
                 new GenericJackson2JsonRedisSerializer(redisObjectMapper);
 
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofMinutes(10)) // optional TTL
+                .entryTtl(Duration.ofMinutes(3)) // 3 minutes TTL
                 .serializeValuesWith(
                         RedisSerializationContext.SerializationPair.fromSerializer(serializer)
                 );
@@ -39,4 +39,4 @@ public class RedisConfig {
                 .cacheDefaults(config)
                 .build();
     }
-}*/
+}

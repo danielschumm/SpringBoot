@@ -1,8 +1,10 @@
 package com.daniels.springboot.events;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import jakarta.servlet.http.HttpServletRequest;
@@ -101,6 +103,16 @@ public class EventController {
     @GetMapping(path = "/events/{id}")
     public Event getEventById(@PathVariable("id") int eventId) {
         return eventService.getEventById(eventId);
+    }
+    @PutMapping(path = "/events/{id}")
+    public Event updateEvent(@PathVariable("id") int eventId, @RequestParam("name") String newName) {
+        return eventService.updateEvent(eventId, newName);
+    }
+
+    @DeleteMapping(path = "/events/{id}")
+    public ResponseEntity<String> deleteEvent(@PathVariable("id") int eventId) {
+        eventService.deleteEvent(eventId);
+        return ResponseEntity.ok("Event with id " + eventId + " deleted successfully");
     }
 
     @GetMapping(path = "/products")
