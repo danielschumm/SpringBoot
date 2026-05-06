@@ -1,4 +1,23 @@
 services:
+  registration-service:
+    build: ./registration-service
+    container_name: registration-service
+    ports:
+      - '8080:8080'
+    depends_on:
+      - mongo
+      - postgres
+      - redis
+  events-service:
+    build: ./events-service
+    container_name: events-service
+    ports:
+      - '8081:8080'
+    depends_on:
+      - mongo
+      - postgres
+      - redis
+    restart: unless-stopped
   mongo:
     image: mongo
     container_name: mongo

@@ -1,8 +1,8 @@
 server:
-  port: 8081
+  port: 8080
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/myapp
+    url: jdbc:postgresql://postgres:5432/myapp
     username: daniels
     password: daniels
   jpa:
@@ -18,7 +18,7 @@ spring:
       mode: never
   data:
     redis:
-      host: localhost
+      host: redis
       port: 6379
   cache:
     type: redis
@@ -26,5 +26,7 @@ logging:
   level:
     org.springframework.cache: TRACE
     org.springframework.data.redis: DEBUG      
+    org.springframework.boot.autoconfigure.jdbc: DEBUG
+    org.hibernate.SQL: DEBUG
 JWT:
   secretkey: "your-very-long-secret-key-that-should-be-kept-safe-and-not-shared"
