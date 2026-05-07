@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: registration-service
+          uri: http://registration-service:8080
+          predicates:
+            - Path=/registration/**
+
+        - id: events-service
+          uri: http://events-service:8080
+          predicates:
+            - Path=/events/**
