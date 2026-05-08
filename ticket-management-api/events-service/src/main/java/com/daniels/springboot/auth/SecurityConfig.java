@@ -26,7 +26,7 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticat
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth
             // Allow unauthenticated access to auth endpoints and Swagger UI
-            .requestMatchers(
+            .pathMatchers(
                 "/auth/**",
                 "/swagger-ui/**",
                 "/v3/api-docs/**",
