@@ -22,10 +22,6 @@ spring:
       port: 6379
   cache:
     type: redis
-  datasource:
-    hikari:
-      initialization-fail-timeout: 0
-      connection-timeout: 30000
 logging:
   level:
     org.springframework.cache: TRACE
