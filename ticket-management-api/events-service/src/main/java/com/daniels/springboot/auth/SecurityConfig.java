@@ -32,7 +32,7 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticat
                 "/v3/api-docs/**",
                 "/swagger-ui.html"
             ).permitAll()
-            .anyRequest().permitAll() //authenticated()
+            .anyRequest().authenticated()
         )
         .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
         .build();
