@@ -4,13 +4,19 @@ server:
 spring:
   cloud:
     gateway:
-      routes:
-        - id: registration-service
-          uri: http://registration-service:8080
-          predicates:
-            - Path=/registration/**
+      server:
+        webflux:
+          routes:
+            - id: auth-service
+              uri: http://events-service:8080
+              predicates:
+                - Path=/auth/**
+            - id: registration-service
+              uri: http://registration-service:8080
+              predicates:
+                - Path=/registration/**
 
-        - id: events-service
-          uri: http://events-service:8080
-          predicates:
-            - Path=/events/**
+            - id: events-service
+              uri: http://events-service:8080
+              predicates:
+                - Path=/events/**
