@@ -14,9 +14,11 @@ spring:
             - id: registration-service
               uri: http://registration-service:8080
               predicates:
-                - Path=/registration/**
+                - Path=/registrations/**
 
             - id: events-service
               uri: http://events-service:8080
               predicates:
                 - Path=/events/**
+              filters:
+                - StripPrefix=1
