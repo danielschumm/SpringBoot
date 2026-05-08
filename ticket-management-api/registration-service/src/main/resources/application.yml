@@ -4,6 +4,4 @@ tickets:
 spring:
   data:
     mongodb:
-      host: mongo
-      port: 27017
-      database: registrations-db
+      uri: mongodb://mongo:27017/registrations-db?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000
