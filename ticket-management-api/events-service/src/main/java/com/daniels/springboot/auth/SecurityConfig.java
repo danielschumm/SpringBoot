@@ -22,6 +22,9 @@ public class SecurityConfig {
 
 @Bean
 public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
+
+        System.out.println(">>> SECURITY CONFIG LOADED <<<");
+        
     return http
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth
