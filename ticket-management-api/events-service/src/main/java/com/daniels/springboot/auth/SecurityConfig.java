@@ -26,13 +26,13 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticat
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth
             // Allow unauthenticated access to auth endpoints and Swagger UI
-            .pathMatchers(
+            .requestMatchers(
                 "/auth/**",
                 "/swagger-ui/**",
                 "/v3/api-docs/**",
                 "/swagger-ui.html"
             ).permitAll()
-            .anyRequest().authenticated()
+            .anyRequest().permitAll() //authenticated()
         )
         .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
         .build();
